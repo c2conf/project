@@ -1,3 +1,12 @@
-<% @users.each do |user| %>
-	<%= user.email %>
+<%= form_for @user do |f| %>
+	<%= f.text_field :email %>
+	<%= f.submit 'Join', :disabled => true, :id => "join_button" %>
 <% end %>
+
+<script>
+$(function() {
+	$('#user_email').live('keyup', function() {
+		$("#join_button").attr("disabled", !c2conf.is_email(this.value))
+	})
+})
+</script>
