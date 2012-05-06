@@ -1,7 +1,9 @@
-<%= form_for @user do |f| %>
+<%= form_for @user, :remote => true do |f| %>
 	<%= f.text_field :email %>
 	<%= f.submit 'Join', :disabled => true, :id => "join_button" %>
 <% end %>
+<div id="message">
+</div>
 
 <script>
 $(function() {

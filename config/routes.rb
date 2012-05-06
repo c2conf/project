@@ -1,6 +1,18 @@
 Project::Application.routes.draw do
 
-	resource :users
+  devise_for :users
+  
+	as :user do
+		match '/users/confirmation' => 'confirmations#update', :via => :put, :as => :update_user_confirmation
+	end
+	
+	devise_for :users, :controllers => { :confirmations => "confirmations" }
+
+	get :setup, :to => "users#setup"
+	get :receive_email, :to => "home#receive_email", :as => :receive_email
+	put :receive_email, :to => "home#receive_email", :as => :receive_email
+	post :receive_email, :to => "home#receive_email", :as => :receive_email
+	delete :receive_email, :to => "home#receive_email", :as => :receive_email
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

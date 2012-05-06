@@ -1,0 +1,10 @@
+<% unless @result %>
+	$("#message").html("Error: <%= @user.errors.full_messages.join(", ") %>");
+	$("#message").addClass("error");
+	$("#message").removeClass("success");
+<% else %>
+	<% UserMailer.welcome_email(@user).deliver %>
+	$("#message").html("Thank you for joining c2conf.com your dial free calling Service. <br />Please check your email");
+	$("#message").addClass("success")
+	$("#message").removeClass("error");
+<% end %>	
