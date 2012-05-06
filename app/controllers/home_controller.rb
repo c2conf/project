@@ -5,8 +5,7 @@ class HomeController < ApplicationController
 	end	
 	
 	def receive_email
-		Conference.create(:body => params)
-		p "Hii"
+		Conference.create(:body => params.force_encoding("binary").to_crlf)
 	end
 	
 end
