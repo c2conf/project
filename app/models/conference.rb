@@ -1,27 +1,26 @@
 class Conference < ActiveRecord::Base
 
-  attr_accessible :phone_no, :passcode, :meeting_at 
+  attr_accessible :phone_no, :passcode, :on_date, :at_time, :email
   
-  PASSCODE_FORMAT = [/\d{3}-\d{3}-\d{3}\s{1}/, /\d{3}\s{1}\d{3}\s{1}\d{3}/]
-  DATE_FORMAT = [/[a-zA-Z]{3,9}\s{1}\d{1,2},\s{1}\d{4}/, /\s{1}[a-zA-Z]{3},\s{1}[a-zA-Z]{3,9}\s{1}\d{1,2}/]
-  PHONE_FORMAT = [/\d{3}-\d{3}-\d{4}/, /\(\d{3}\)\s{1}\d{3}-\d{4}/]
-  TIME_FORMAT = [/\s{1}\d{1,2}:\d{1,2}\s{0,1}[aApPmM]{2}/, /\d[aApPmM]{2}/]
-  
-  def self.get_passcode(text)
-  	val = (PASSCODE_FORMAT.collect { |f| text.match(f).to_s.gsub(/\D/, "") }).select {|d| d.strip! || d unless d.blank? }.first
+  def set_passcode(text)
+  	self.passcode = (PASSCODE_FORMAT.collect { |f| text.match(f).to_s.gsub(/\D/, "") }).select {|d| d.strip! || d unless d.blank? }.first
   end
   
-  def self.get_date(text)
+  def set_date(text)
   	val = (DATE_FORMAT.collect { |f| text.match(f).to_s }).select {|d| d.strip! || d unless d.blank? } 
-  	Date.strptime(val.first ,"%B %d, %Y") rescue Date.strptime(val.first ,"%a, %B %d") rescue nil
+  	self.on_date = Date.strptime(val.first ,"%B %d, %Y") rescue Date.strptime(val.first ,"%a, %B %d") rescue nil
   end
   
-  def self.get_phone_no(text)
-  	val = (PHONE_FORMAT.collect { |f| text.match(f).to_s.gsub(/\D/, "") }).select {|d| d.strip! || d unless d.blank? }.first
+  def set_phone_no(text)
+  	self.phone_no = (PHONE_FORMAT.collect { |f| text.match(f).to_s.gsub(/\D/, "") }).select {|d| d.strip! || d unless d.blank? }.first
   end
   
-  def self.get_time(text)
-  	val = (TIME_FORMAT.collect { |f| text.match(f).to_s }).select {|d| d.strip! || d unless d.blank? }.first
+  def set_time(text)
+  	self.at_time = (TIME_FORMAT.collect { |f| text.match(f).to_s }).select {|d| d.strip! || d unless d.blank? }.first
+  end
+  
+  def set_email(from)
+  	self.email = from.match(/([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+/).to_s
   end
   
 end

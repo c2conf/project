@@ -18,7 +18,9 @@ ActiveRecord::Schema.define(:version => 20120506111959) do
     t.datetime "updated_at", :null => false
     t.string   "phone_no"
     t.string   "passcode"
-    t.datetime "meeting_at"
+    t.date     "on_date"
+    t.string   "at_time"
+    t.string   "email"
   end
 
   create_table "users", :force => true do |t|

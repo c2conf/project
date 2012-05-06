@@ -1,6 +1,17 @@
 Project::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+	ActionMailer::Base.smtp_settings = {
+		:address        => 'smtp.sendgrid.net',
+		:port           => '587',
+		:authentication => :plain,
+		:user_name      => "app4462770@heroku.com",
+		:password       => "z9bmr1ws",
+		:domain         => 'www.c2conf.com'
+	}
+	ActionMailer::Base.delivery_method = :smtp
+
+
   # Code is not reloaded between requests
   config.cache_classes = true
 
