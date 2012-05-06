@@ -1,0 +1,20 @@
+<table border=1>
+	<tr>
+		<th>Id</th>
+		<th>E-mail</th>
+		<th>Date</th>
+		<th>Time</th>
+		<th>Phone Number</th>
+		<th>Pass Code</th>
+	</tr>
+	<% @conferences.each do |conference| %>
+	<tr>
+		<td><%= conference.id %></td>
+		<td><%= conference.email %></td>
+		<td><%= conference.on_date %></td>
+		<td><%= conference.at_time %></td>
+		<td><%= conference.phone_no %></td>
+		<td><%= conference.passcode %></td>
+	</tr>
+	<% end %>
+</table>

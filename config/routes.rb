@@ -8,7 +8,8 @@ Project::Application.routes.draw do
 	
 	devise_for :users, :controllers => { :confirmations => "confirmations" }
 
-	resource :users
+	resources :users
+	resources :conferences
 
 	get :setup, :to => "users#setup"
 	get :receive_email, :to => "home#receive_email"

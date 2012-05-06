@@ -13,9 +13,9 @@ class HomeController < ApplicationController
 		@conference.set_date(email_body)
 		@conference.set_time(email_body)
 		if @conference.save
-			ConferenceMailer.success(@conference)
+			ConferenceMailer.success(@conference).deliver
 		else
-			ConferenceMailer.failure(@conference)
+			ConferenceMailer.failure(@conference).deliver
 		end
 	end
 	
