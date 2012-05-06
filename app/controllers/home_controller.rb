@@ -6,6 +6,7 @@ class HomeController < ApplicationController
 	
 	def receive_email
 		Conference.create(:body => params)
+		p "Hii"
 	end
 	
 end

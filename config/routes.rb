@@ -8,11 +8,13 @@ Project::Application.routes.draw do
 	
 	devise_for :users, :controllers => { :confirmations => "confirmations" }
 
+	resource :users
+
 	get :setup, :to => "users#setup"
-	get :receive_email, :to => "home#receive_email", :as => :receive_email
-	put :receive_email, :to => "home#receive_email", :as => :receive_email
-	post :receive_email, :to => "home#receive_email", :as => :receive_email
-	delete :receive_email, :to => "home#receive_email", :as => :receive_email
+	get :receive_email, :to => "home#receive_email"
+	put :receive_email, :to => "home#receive_email"
+	post :receive_email, :to => "home#receive_email"
+	delete :receive_email, :to => "home#receive_email"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
