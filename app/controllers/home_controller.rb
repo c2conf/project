@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	end	
 	
 	def receive_email
-		Conference.create(:body => params[:text])
+		Conference.create(:body => "#{params[:from]} #{params[:subject]}")
 	end
 	
 end
