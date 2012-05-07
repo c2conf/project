@@ -10,7 +10,7 @@ Project::Application.configure do
 	config.action_mailer.smtp_settings = {
 		:address => "smtp.gmail.com",
 		:port => 587,
-		:domain => "c2conf.com",
+		:domain => "c2conf.herokuapp.com",
 		:authentication => "plain",
 		:user_name => "guptapreeti.india",
 		:password => "2340606pr",
